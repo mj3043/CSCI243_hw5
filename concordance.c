@@ -2,6 +2,7 @@
  * file name: concordance.c
  * Concordance generator using BST
  * @author: Munkh-Orgil Jargalsaikhan
+ * @date: October 17th 2025
  */
 
  #define _DEFAULT_SOURCE
@@ -11,6 +12,12 @@
  #include <ctype.h>
  #include "bst.h"
 
+ /**
+ * @brief Main function: reads input, constructs BST, prints concordance.
+ * @param argc  Argument count (must be 1).
+ * @param argv  Argument vector (unused).
+ * @return EXIT_SUCCESS on success, EXIT_FAILURE on errors.
+ */
  int main(int argc, char *argv[]) {
     (void)argv;
     if (argc != 1){

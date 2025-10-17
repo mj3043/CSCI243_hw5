@@ -2,6 +2,7 @@
 *file name: bst.c
 *Implementation of the binary search tree functions for the concordance
 *@author: Munkh-Orgil Jargalsaikhan
+*@date: October 17th 2025
 */
 
 #define _DEFAULT_SOURCE
@@ -13,6 +14,12 @@
 
 #define INITIAL_REFLEN 4u
 
+/**
+ * @brief Add a line reference to an existing node, resizing the array if needed
+ * @param node Pointer to the node to update.
+ * @param line Line numebr where the word occurred.
+ * @return 0 on success, -1 if memory allocation fails or node is NULL.
+ */
 static int add_ref(bstnode_t *node, unsigned int line) {
     if (node == NULL) return -1;
 
@@ -29,6 +36,14 @@ static int add_ref(bstnode_t *node, unsigned int line) {
     return 0;
 }
 
+/**
+ * @brief Insert a word into the BST or update its frequency if it already exists.
+ * Allocates a new node when inserting a new word. For existing words, adds a new
+ * line reference using the helper function add_ref().
+ * @param bp    Pointer to the root pointer of the BST.
+ * @param word  The word to insert.
+ * @param line  Line number where the word occurred.
+ */
 void bst_insert(bstnode_t **bp, const char *word, int line){
     if(*bp == NULL){
         bstnode_t *node = malloc(sizeof(bstnode_t));
@@ -57,12 +72,17 @@ void bst_insert(bstnode_t **bp, const char *word, int line){
     }
 }
 
+/**
+ * @brief Perform an in-order traversal of the BST and print each node.
+ * Prints words in lexicographical order, along with their frequency and line references.
+ * @param root  Pointer to the root node of the tree.
+ */
 void bst_traverse(const bstnode_t *root) {
     if (root == NULL) return;
 
     bst_traverse(root->left);
 
-    printf("%s (%u): ", root->word, root->freq);
+    printf("%s (%u):  ", root->word, root->freq);
     for (unsigned int i = 0; i < root->freq; i++) {
         printf("%u", root->refs[i]);
         if (i + 1 < root->freq) {
@@ -74,7 +94,10 @@ void bst_traverse(const bstnode_t *root) {
     bst_traverse(root->right);
 }
 
-
+/**
+ * @brief Recursively free all nodes in the BST.
+ * @param root  Pointer to the root node to be freed.
+ */
 void bst_cleanup(bstnode_t *root){
     if(root == NULL) return;
     
