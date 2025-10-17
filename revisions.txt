@@ -1,0 +1,32 @@
+CSCI-243 Homework 5: Concordance
+Author: Munkh-Orgil Jargalsaikhan
+RIT Username: mj3043
+
+Revisions:
+
+1. Implemented BST (Binary Search Tree) structure and core functions:
+   - bst_insert(): inserts a word and records line numbers.
+   - bst_traverse(): in-order traversal printing word frequencies and references.
+   - bst_cleanup(): frees all dynamically allocated memory.
+
+2. Fixed memory allocation issues:
+   - Added error checking for malloc() and realloc().
+   - Used strdup() for copying word strings safely.
+
+3. Adjusted BST insertion logic:
+   - Used strcasecmp() for case-insensitive comparisons.
+   - Added helper function add_ref() to expand and append line references.
+
+4. Corrected output formatting:
+   - Ensured each line prints as "word (freq):  line1, line2, ..."
+   - Matched spacing to reference output exactly (two spaces after colon).
+
+5. Verified correctness and memory safety:
+   - Tested with input.1 and input.2.
+   - Used diff to match stdout.1 and stdout.2 — outputs identical.
+   - Ran Valgrind: 0 memory leaks, 0 errors.
+
+Final status:
+✅ All tests passed.
+✅ No memory leaks.
+✅ Output matches expected results.
